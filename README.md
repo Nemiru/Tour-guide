@@ -8,15 +8,14 @@ and manage a list of favorite cities with dark mode support.
 - See a list of popular tours
 - Put a favourite on your city
 - Have dark mode on device
-
-# (Unit, integration, and UAT (Detox))
-npm test
+- unit, intergration and UAT (DETOX)
 
 # Installation
 npm install
 const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY';
 npx react-native run-android or run-ios
 npx expo start
+npm test
 
 # Clone the repo
 git clone https://github.com/Nemiru/Blackpool-tours + cd Blackpool-tours
