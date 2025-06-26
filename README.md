@@ -7,7 +7,6 @@ and manage a list of favorite cities with dark mode support.
 - View the upcoming weather for city
 - See a list of popular tours
 - Put a favourite on your city
-- Have dark mode on device
 - unit, intergration and UAT (DETOX)
 
 # Installation
