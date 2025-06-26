@@ -8,31 +8,31 @@ import TourList from './components/TourList';
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState('');
-  const [favorites, setFavorites] = useState([]);
+  const [favourites, setFavourites] = useState([]);
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
 
   useEffect(() => {
-    loadFavorites();
+    loadFavourites();
   }, []);
 
-  const loadFavorites = async () => {
-    const data = await AsyncStorage.getItem('favorites');
-    if (data) setFavorites(JSON.parse(data));
+  const loadFavourites = async () => {
+    const data = await AsyncStorage.getItem('favourites');
+    if (data) setFavourites(JSON.parse(data));
   };
 
-  const toggleFavorite = async (city) => {
+  const toggleFavourite = async (city) => {
     let updated;
-    if (favorites.includes(city)) {
-      updated = favorites.filter((c) => c !== city);
+    if (favourites.includes(city)) {
+      updated = favourites.filter((c) => c !== city);
     } else {
-      updated = [...favorites, city];
+      updated = [...favourites, city];
     }
-    setFavorites(updated);
-    await AsyncStorage.setItem('favorites', JSON.stringify(updated));
+    setFavourites(updated);
+    await AsyncStorage.setItem('favourites', JSON.stringify(updated));
   };
 
-  const isFavorite = (city) => favorites.includes(city);
+  const isFavourite = (city) => favourites.includes(city);
 
   return (
     <View style={[styles.container, { backgroundColor: isDark ? '#000' : '#fff' }]}>
@@ -40,19 +40,19 @@ export default function App() {
 
       {selectedCity ? (
         <Button
-          title={isFavorite(selectedCity) ? '★ Unfavorite' : '☆ Add to Favorites'}
-          onPress={() => toggleFavorite(selectedCity)}
+          title={isFavourite(selectedCity) ? '★ Unfavourite' : '☆ Add to Favourites'}
+          onPress={() => toggleFavourite(selectedCity)}
         />
       ) : null}
 
-      {favorites.length > 0 && (
+      {favourites.length > 0 && (
         <FlatList
-          data={favorites}
+          data={favourites}
           horizontal
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => setSelectedCity(item)}>
-              <Text style={[styles.favorite, { color: isDark ? '#FFD700' : '#000' }]}>
+              <Text style={[styles.favourite, { color: isDark ? '#FFD700' : '#000' }]}>
                 ★ {item}
               </Text>
             </TouchableOpacity>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingHorizontal: 20,
   },
-  favorite: {
+  favourite: {
     marginRight: 10,
     fontSize: 16,
   },
